@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ElectTweet</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.css') }}" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet" />
+  
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename = 'css/responsive.css') }}" rel="stylesheet" />
+
+   <style>
+    *{
+      overflow-y: hidden;
+    }
+    html, body {
+      height: 100%;
+    }
+    .container-fluid {
+      height: 100%;
+    }
+
+    .row {
+      height: 100%;
+    }
+
+    .col-md-6 {
+      height: 100%;
+    }
+    .sidemenu{
+      border-right: 2px solid #294049;
+    }
+    h5{
+      margin-top: 50px;
+      color: #294049;
+    }
+    .bold{
+      font-weight: bold;
+    }
+    input, select{
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+      padding: 3px;
+      border: 1px solid gray;
+      border-radius: 3px;
+    }
+    label{
+      display: block;
+      color: #347073;
+      text-transform: capitalize;
+
+    }
+    input:focus, select:focus{
+      border: 1px solid gray;
+      outline: none;
+    }
+    button{
+      color: white;
+      border-radius: 3px;
+    }
+    .menuelements{
+      display: flex;
+      align-items: baseline;
+    }
+    .menuelements button{
+      padding: 5px;
+    }
+    .hide{
+      display: none;
+    }
+    .list-group-item{
+      cursor: pointer;
+    }
+    .newscont{
+      display: flex;
+      align-items: center;
+      /* justify-content: center; */
+      align-content: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+    }
+    #datetime{
+      color:gray; 
+      font-size: 15px;
+    }
+    .head{
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+
+<body class="sub_page">
+
+  <!-- header section strats -->
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="" />
+            <span>
+              ElectTweet
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          </div>
+          <div>
+            <div class="custom_menu-btn ">
+              <div class="menuelements">
+                <button style="background: #6bbf20; margin-right: 10px;" id="allnews">
+                 All Posts
+                </button>
+                <button style="background: #14afa8; margin-right: 10px;" id="newshistory">
+                  My History
+                </button>
+                <button style="background: tomato;" id="logout">
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+  </div>
+    <!-- end header section -->
+
+  <div class="container">
+
+      <label class="head" style="margin-top: 50px">Party : <span id="tparty">Loading...</span></label>
+      <label class="head" >Tweet ID : <span id="ttweetid"></span></label>
+      <label class="head" >Tweet : <span id="ttweet">Loading...</span></label>
+      <label class="head" >Sentiment : <span id="tweetanalyse">Loading...</span></label>
+
+    
+     <div class="row newscont" style="margin-top: 20px">
+      <div class="col-md-7">
+        <section id="newssection"  style="height: 500px; overflow-y: scroll;">      
+            <ul id="newsfeed" class="list-group">
+            
+            </ul>
+          </section>
+      </div>
+      <div class="col-md-5" id="imgfield">
+        <center><label>Chart for Campaign Ratio in Each Category</label></center>
+        <img src="{{ url_for('static', filename = 'senchart.png') }}" height="400" width="400">
+      </div>
+      </div> 
+  </div>
+
+   <script src="{{ url_for('static', filename = 'js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/custom.js') }}"></script>
+  
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var urlParams = new URLSearchParams(window.location.search);
+      var tweetid = urlParams.get('tweetid');
+      $("#ttweetid").html(tweetid)
+
+       $.ajax({
+            url:"/gettweet", 
+            type: "post", 
+            dataType: 'json',
+            data: {"tweetid":tweetid},
+            beforeSend: function(){
+            
+            },
+            success: function(data){
+              var appenddata = ''
+            if(data.comments.length > 0){
+              for(var i=0; i<=data.comments.length-1; i++){
+                appenddata += `<li class="list-group-item" >
+                <p class="list-group-item-heading" style='font-size:18px;overflow-wrap: break-word;'>Tweet @`+data.comment_analyze[i]+`</p>
+                <p class="list-group-item-text" style='font-size:13px; color:gray'>`+data["comments"][i]['comment']+`</p>
+              </li>`
+            }
+            $("#imgfield").css("visibility","visible")
+            $("#newssection").css("overflow-y","scroll")
+          }else{
+            $("#imgfield").css("visibility","hidden")
+            appenddata = `<li class="list-group-item">
+                <p class="list-group-item-heading" style='font-size:18px;overflow-wrap: break-word;'>No comments available for this tweet!</p>
+              </li>`
+               $("#newssection").css("overflow-y","hidden")
+          }
+              
+            $("#newsfeed").html(appenddata)    
+
+            $("#ttweet").html(data.tweet[0]["tweet_content"])
+            $("#tweetanalyse").html(data.tweet_analyze)
+            $("#tparty").html(data.tweet[0]["party"])
+
+            }
+
+        });
+
+       $("#logout").click(function(){
+          location.href = '{{url_for("main")}}'
+       })
+
+       $("#newshistory").click(function(){
+          location.href = '{{url_for("newshistory")}}'
+       })
+
+      $("#allnews").click(function(){
+          location.href = '{{url_for("tweetpage")}}'
+       })
+
+
+    })
+  </script>
+  
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Campaign</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.css') }}" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet" />
+  
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename = 'css/responsive.css') }}" rel="stylesheet" />
+  <style type="text/css">
+    button{
+      width: 30%;
+      border:none;
+      outline: none;
+      padding: 8px;
+      margin-top: 50px;
+      background: #2f4b73;
+      color: white;
+    }
+  </style>
+  <body>
+  
+      <!-- header section strats -->
+      <header class="header_section" style="background: #2f4b73">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="" />
+              <span>
+                News App Admin
+              </span>
+            </a>
+
+          </nav>
+        </div>
+      </header>
+      <center>
+        <button id="newsupdate">Update Post</button>
+        <br><br>
+        <span id="statustext" style="color: red"></span>
+      </center>
+      <!-- end header section -->
+
+  <script src="{{ url_for('static', filename = 'js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/custom.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
+  
+
+</body>
+</body>
+
+</html>

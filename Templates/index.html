@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ElectTweet</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.css') }}" />
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet" />
+  
+  <!-- responsive style -->
+  <link href="{{ url_for('static', filename = 'css/responsive.css') }}" rel="stylesheet" />
+  <style type="text/css">
+    body{
+      background: linear-gradient(to right, #1a2e35 55%, #1cbbb4 55%);
+    }
+    .ch5{
+      color:white;
+      margin-bottom: 20px;
+    }
+
+    .hide{
+      display:none
+    }
+
+    .center{
+      text-align:left;
+    }
+
+    input{
+      display: block;
+      margin-bottom: 20px;
+      padding: 5px;
+      border: 1px solid gray;
+      width: 60%;
+      border-radius: 3px;
+    }
+    input:focus{
+      border: 1px solid gray;
+      outline: none;
+    }
+
+    button{
+      width: 60%;
+      border:none;
+      outline: none;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    .butback{
+      color:white;
+      background: #ff4f5a;
+    }
+    .butback:focus{
+      outline: none;
+    }
+    .linkspan{
+      color: white;
+      
+      cursor: pointer;
+    }
+    .error{
+      color: #ff4f5a;
+    }
+    .success{
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <img src="{{ url_for('static', filename = 'images/logo.png') }}" alt="" />
+            <span>
+              ElectTweet
+            </span>
+          </a>
+
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container-fluid">
+              <div class="row">
+
+                <div class="col-md-5 offset-md-1">
+                  <div class="detail-box" >
+                    <!-- Welcome -->
+                    <div id="initform">
+                    <h1>
+                      You Can <br>
+                      Get Election Tweet<br>
+                      And Analysis</h1>
+                    <p>
+                      Welcome to our ElectTweet application, your one-stop destination for all the latest updates and breaking election updates!
+                    </p>
+                    <div class="btn-box">
+                      <a  class="btn-1" id="logbutton">
+                        Sign In 
+                      </a>
+                      <a  class="btn-2" id="regbutton">
+                        Register
+                      </a>
+                    </div>
+                  </div>
+                    <!-- Register -->
+
+                    <div class="info_form hide" id="registerform">
+                      <h5 class="ch5 center">
+                        Register Here!
+                      </h5>
+                      <form action="">
+                        <input type="text" placeholder="Username" id="runame">
+                        <input type="email" placeholder="Email" id="remail">
+                        <input type="number" placeholder="Phone" id="rphone">
+                        <input type="password" placeholder="Password" id="rpassword">
+                        <span class="error hide"></span>
+                        <span class="success hide"></span>
+                        <button type="button" class="butback" id="registerbtn">
+                          Register!
+                        </button><br>
+                        <span class="linkspan" id="loglink">Already Registered <b>Login?</b></span>
+                      </form>
+                    </div>
+
+                    <div class="info_form hide" id="loginform">
+                      <h5 class="ch5 center">
+                        Login Here!
+                      </h5>
+                      <form action="">
+                        <input type="number" placeholder="Phone" id="sphone">
+                        <input type="password" placeholder="Password" id="spassword">
+                        <span class="error hide"></span>
+                        <span class="success hide"></span>
+                        <button type="button" class="butback" id="logbtn">
+                          Sign In!
+                        </button><br>
+                        <span class="linkspan" id="reglink">Not yet <b>Registered?</b></span>
+                      </form>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="offset-md-1 col-md-4 img-container">
+                  <div class="img-box">
+                    <img src="{{ url_for('static', filename = 'images/slider1.png') }}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+      </div>
+
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <script src="{{ url_for('static', filename = 'js/jquery-3.4.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/bootstrap.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/custom.js') }}"></script>
+  <script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
+  
+</body>
+
+</html>
